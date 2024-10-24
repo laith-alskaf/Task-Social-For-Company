@@ -7,7 +7,7 @@ import 'package:social_app_test/ui/shared/colors.dart';
 import 'package:social_app_test/ui/shared/custom_widget/custom_text.dart';
 import 'package:social_app_test/ui/shared/extension_sizebox.dart';
 
-showCommentsPost({required List<Comment> comments,required int numberLikes}) {
+showCommentsPost({required List<CommentModel> comments,required int numberLikes}) {
   Get.bottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -59,7 +59,7 @@ showCommentsPost({required List<Comment> comments,required int numberLikes}) {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(100.r)),
                                     child: Image.asset(
-                                      comments[index].user.profileImage,
+                                      comments[index].user!.profileImage!,
                                       scale: 2.8,
                                     )),
                                 (10.w).pw,
@@ -78,11 +78,11 @@ showCommentsPost({required List<Comment> comments,required int numberLikes}) {
                                         child: Column(
                                           children: [
                                             CustomText(
-                                                text: comments[index].user.name,
+                                                text: comments[index].user!.name!,
                                                 textType: TextStyleType.body),
                                             (15.h).ph,
                                             CustomText(
-                                              text: comments[index].text,
+                                              text: comments[index].text!,
                                               textType: TextStyleType.body,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -95,7 +95,7 @@ showCommentsPost({required List<Comment> comments,required int numberLikes}) {
                                         children: [
                                           CustomText(
                                               startPadding: 5.w,
-                                              text: comments[index].time,
+                                              text: comments[index].time!,
                                               textType: TextStyleType.small),
                                           const Spacer(),
                                           CustomText(

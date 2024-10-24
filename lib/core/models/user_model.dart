@@ -1,11 +1,16 @@
-class User {
-  final String name;
-  final String profileImage;
+import 'package:hive/hive.dart';
+part 'user_model.g.dart';
 
-  User({
-    required this.name,
-    required this.profileImage,
+@HiveType(typeId: 0)
+class UserModel extends HiveObject{
+  @HiveField(0)
+  final String? name;
+  @HiveField(1)
+  final String? profileImage;
+
+  UserModel({
+    this.name,
+    this.profileImage,
   });
 }
-
 

@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,7 +17,7 @@ class ContainerPost extends StatelessWidget {
       required this.body,
       required this.delay});
 
-  final Post post;
+  final PostModel post;
   final bool? existWith;
   final List<String> body;
   final Duration delay;
@@ -36,23 +35,23 @@ class ContainerPost extends StatelessWidget {
       child: Column(
         children: [
           RowTitlePost(
-            name: post.user.name,
+            name: post.user!.name!,
             existWith: existWith,
-            time: post.time,
-            profileImage: post.user.profileImage,
+            time: post.time!,
+            profileImage: post.user!.profileImage!,
           ),
           (20.h).ph,
-          if (post.images.isNotEmpty) ...[
+          if (post.images!.isNotEmpty) ...[
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                if (post.images.length < 4)
+                if (post.images!.length < 4)
                   Row(
                     children: [
                       ClipRRect(
                           borderRadius: BorderRadius.circular(35.r),
                           child: Image.asset(
-                            post.images[0],
+                            post.images![0],
                             height: 360.h,
                             width: 230.w,
                             fit: BoxFit.cover,
@@ -63,7 +62,7 @@ class ContainerPost extends StatelessWidget {
                           ClipRRect(
                               borderRadius: BorderRadius.circular(35.r),
                               child: Image.asset(
-                                post.images[1],
+                                post.images![1],
                                 height: 180.h,
                                 width: 220.w,
                                 fit: BoxFit.cover,
@@ -72,7 +71,7 @@ class ContainerPost extends StatelessWidget {
                           ClipRRect(
                               borderRadius: BorderRadius.circular(35.r),
                               child: Image.asset(
-                                post.images[2],
+                                post.images![2],
                                 height: 180.h,
                                 width: 220.w,
                                 fit: BoxFit.cover,
@@ -81,10 +80,10 @@ class ContainerPost extends StatelessWidget {
                       )
                     ],
                   ),
-                if (post.images.length >= 4) ...[
+                if (post.images!.length >= 4) ...[
                   ClipRRect(
                       borderRadius: BorderRadius.circular(35.r),
-                      child: Image.asset(post.images[0])),
+                      child: Image.asset(post.images![0])),
                   Padding(
                     padding: EdgeInsetsDirectional.only(
                         start: 0.36.sw, bottom: 10.h),
@@ -92,7 +91,7 @@ class ContainerPost extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: List.generate(post.images.length, (index) {
+                          children: List.generate(post.images!.length, (index) {
                             return Container(
                                 margin: EdgeInsetsDirectional.only(end: 10.w),
                                 width: 10.w,
@@ -110,7 +109,7 @@ class ContainerPost extends StatelessWidget {
             ),
             (10.h).ph,
           ],
-          if (post.body.isNotEmpty) ...[
+          if (post.body!.isNotEmpty) ...[
             Wrap(
                 runSpacing: 5.w,
                 spacing: 5.w,
@@ -136,7 +135,7 @@ class ContainerPost extends StatelessWidget {
                             .toList()),
                   );
                 })),
-            if (post.images.isEmpty)
+            if (post.images!.isEmpty)
               Divider(
                 thickness: 3,
                 height: 26.h,
@@ -236,13 +235,13 @@ class ContainerPost extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       showCommentsPost(
-                          comments: post.comments, numberLikes: post.likes);
+                          comments: post.comments!, numberLikes: post.likes!);
                     },
                     child: SvgPicture.asset('assets/images/ic_comment.svg',
                         width: 40.w)),
                 (10.w).pw,
                 CustomText(
-                  text: post.comments.length.toString(),
+                  text: post.comments!.length.toString(),
                   textType: TextStyleType.body,
                   textColor: AppColors.grayColor,
                   fontWeight: FontWeight.normal,

@@ -12,7 +12,7 @@ import 'package:story/story.dart';
 class StoryView extends StatelessWidget {
   const StoryView({super.key, required this.story});
 
-  final Story story;
+  final StoryModel story;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class StoryView extends StatelessWidget {
             children: [
               Positioned.fill(
                 child: Image.asset(
-                  story.story,
+                  story.story!,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -38,7 +38,7 @@ class StoryView extends StatelessWidget {
                     children: [
                       (85.w).pw,
                       CustomText(
-                        text: story.user.name,
+                        text: story.user!.name!,
                         textType: TextStyleType.subtitle,
                         textColor: AppColors.whiteColor,
                         topPadding: 10.h,
@@ -46,7 +46,7 @@ class StoryView extends StatelessWidget {
                       ),
                       (15.w).pw,
                       CustomText(
-                        text: story.time,
+                        text: story.time!,
                         textType: TextStyleType.body,
                         textColor: AppColors.whiteColor.withOpacity(0.8),
                       ),
